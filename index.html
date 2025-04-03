@@ -10,8 +10,9 @@
       --main-bg: #f7f3f0;
       --text-color: #3a2c27;
       --accent-color: #b89e88;
-      --gold: #c9a96e;
+      --gold: #b88f52; /* Darkened gold for better contrast */
       --soft-taupe: #e8dfd7;
+      --light-accent: rgba(255, 255, 255, 0.7);
     }
 
     * {
@@ -22,7 +23,7 @@
 
     body {
       background: var(--main-bg);
-      font-family: 'Playfair Display', serif;
+      font-family: 'Open Sans', sans-serif;
       color: var(--text-color);
       display: flex;
       justify-content: center;
@@ -36,15 +37,17 @@
       background-color: var(--soft-taupe);
       border: 2px solid var(--gold);
       border-radius: 18px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-      max-width: 500px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+      max-width: 600px;
       width: 100%;
       text-align: center;
-      padding: 2.5rem 2rem;
+      padding: 3.5rem 2.5rem;
       position: relative;
       opacity: 0;
       transform: translateY(30px);
       animation: fadeInUp 1.2s ease-out forwards;
+      margin: 20px auto;
+      transition: opacity 1.5s ease-in-out;
     }
 
     @keyframes fadeInUp {
@@ -54,48 +57,116 @@
       }
     }
 
+    /* Custom SVG Ornaments */
+    .ornament {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      opacity: 0.7;
+    }
+
+    .ornament-1 {
+      top: 20px;
+      left: 20px;
+      transform: rotate(-45deg);
+    }
+
+    .ornament-2 {
+      top: 20px;
+      right: 20px;
+      transform: rotate(45deg);
+    }
+
+    .ornament-3 {
+      bottom: 20px;
+      left: 20px;
+      transform: rotate(225deg);
+    }
+
+    .ornament-4 {
+      bottom: 20px;
+      right: 20px;
+      transform: rotate(135deg);
+    }
+
     .monogram {
       font-family: 'Aref Ruqaa Ink', serif;
-      font-size: 4rem;
+      font-size: 4.2rem;
       font-weight: 700;
       letter-spacing: 0.05em;
       color: var(--gold);
       margin-bottom: 2rem;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
       line-height: 1.4;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px rgba(184, 143, 82, 0.2);
+      }
+      to {
+        text-shadow: 0 0 15px rgba(184, 143, 82, 0.5);
+      }
     }
 
     .crest {
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
+      transition: transform 0.5s ease;
+    }
+
+    .crest:hover {
+      transform: scale(1.05);
     }
 
     .crest img {
-      max-width: 80px;
+      max-width: 120px;
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
     }
 
     .headline {
+      font-family: 'Playfair Display', serif;
       font-size: 2.2rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 1rem;
       color: var(--gold);
       text-transform: uppercase;
       letter-spacing: 2px;
     }
 
     .subtext {
-      font-size: 1rem;
-      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
       letter-spacing: 0.5px;
-      line-height: 1.6;
+      line-height: 1.8;
     }
 
     .event-details {
-      font-size: 1rem;
-      margin-bottom: 1.5rem;
-      line-height: 1.6;
+      font-size: 1.1rem;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+      padding: 1.5rem;
+      border-top: 1px solid rgba(201, 169, 110, 0.3);
+      border-bottom: 1px solid rgba(201, 169, 110, 0.3);
+    }
+
+    .event-details strong {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--accent-color);
+    }
+
+    .ayah {
+      font-style: italic;
+      margin: 2.5rem 0;
+      padding: 1.5rem;
+      background-color: rgba(255, 255, 255, 0.6);
+      border-radius: 12px;
+      line-height: 1.9;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
 
     .countdown {
-      margin-top: 1.5rem;
+      margin-top: 2.5rem;
       font-size: 1rem;
       color: var(--accent-color);
       display: flex;
@@ -105,69 +176,71 @@
     }
 
     .countdown-item {
-      background: rgba(255, 255, 255, 0.3);
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      min-width: 80px;
+      background: rgba(255, 255, 255, 0.6);
+      padding: 0.8rem 1.3rem;
+      border-radius: 10px;
+      min-width: 90px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .countdown-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
     }
 
     .countdown span {
       display: block;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       font-weight: bold;
       color: var(--gold);
     }
 
-    .calendar-link {
-      margin-top: 1.5rem;
+    .buttons {
+      margin-top: 2.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
       display: inline-block;
       background-color: var(--gold);
       color: white;
-      padding: 0.8rem 1.5rem;
+      padding: 0.9rem 1.7rem;
       border-radius: 8px;
       text-decoration: none;
-      font-size: 0.95rem;
-      transition: all 0.3s ease;
+      font-size: 1rem;
+      transition: all 0.4s ease;
       border: 2px solid transparent;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-    .calendar-link:hover {
+    .btn:hover {
       background-color: transparent;
       color: var(--gold);
       border-color: var(--gold);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     }
 
     .footer {
-      margin-top: 2rem;
-      font-size: 0.85rem;
+      margin-top: 3rem;
+      font-size: 0.95rem;
       color: #666;
       line-height: 1.6;
     }
 
-    @media (max-width: 480px) {
-      .container {
-        padding: 1.5rem 1rem;
-      }
-
-      .monogram {
-        font-size: 3rem;
-      }
-
-      .headline {
-        font-size: 1.8rem;
-      }
-
-      .countdown {
-        gap: 0.5rem;
-      }
-
-      .countdown-item {
-        padding: 0.4rem 0.8rem;
-        min-width: 70px;
-      }
+    .footer strong {
+      display: block;
+      margin-top: 0.7rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--accent-color);
     }
 
+    /* Video intro improvements */
     .video-intro {
       position: fixed;
       top: 0;
@@ -179,12 +252,39 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: opacity 1s ease-in-out;
+      transition: opacity 1.5s ease-in-out;
     }
 
     .video-intro.hidden {
       opacity: 0;
       pointer-events: none;
+    }
+
+    /* Preloader Animation */
+    .preloader {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .loader {
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(184, 158, 136, 0.2);
+      border-top: 5px solid var(--gold);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 10px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     .video-container {
@@ -193,6 +293,15 @@
       position: relative;
       padding-bottom: 56.25%;
       height: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    
+    .video-container.loaded {
+      opacity: 1;
     }
 
     .video-container iframe {
@@ -204,25 +313,214 @@
       border: none;
     }
 
-    .container {
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
+    .skip-intro {
+      position: absolute;
+      bottom: 25px;
+      right: 25px;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 10px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 15px;
+      z-index: 1001;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-    .container.visible {
-      opacity: 1;
+    .skip-intro:hover {
+      background: rgba(255, 255, 255, 1);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .location-link {
+      color: var(--accent-color);
+      text-decoration: underline;
+      transition: color 0.3s;
+      font-weight: 600;
+    }
+    
+    .location-link:hover {
+      color: var(--gold);
+    }
+    
+    .rsvp-section {
+      margin: 2.5rem 0;
+      padding: 1.5rem;
+      background-color: rgba(255, 255, 255, 0.6);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    
+    .rsvp-deadline {
+      font-weight: bold;
+      color: var(--accent-color);
+    }
+
+    /* New Sections */
+    .additional-info {
+      margin: 2.5rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .info-card {
+      background-color: rgba(255, 255, 255, 0.6);
+      padding: 1.5rem;
+      border-radius: 12px;
+      flex: 1 1 45%;
+      min-width: 200px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .info-card h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+
+    .info-card p {
+      line-height: 1.6;
+    }
+
+    /* Gallery Section */
+    .couple-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .gallery-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 10px;
+      object-fit: cover;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .gallery-img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Enhanced Mobile Styles */
+    @media (max-width: 480px) {
+      .container {
+        padding: 2rem 1.5rem;
+      }
+
+      .monogram {
+        font-size: 3rem;
+      }
+
+      .headline {
+        font-size: 1.7rem;
+      }
+
+      .countdown {
+        gap: 0.7rem;
+      }
+
+      .countdown-item {
+        padding: 0.5rem 0.8rem;
+        min-width: 75px;
+      }
+      
+      .ornament {
+        width: 40px;
+        height: 40px;
+      }
+      
+      .info-card {
+        flex: 1 1 100%;
+      }
+      
+      .gallery-img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+    
+    /* Extra Small Screens */
+    @media (max-width: 360px) {
+      .container {
+        padding: 1.5rem 1rem;
+      }
+      
+      .monogram {
+        font-size: 2.5rem;
+      }
+      
+      .headline {
+        font-size: 1.5rem;
+      }
+      
+      .buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+      }
+      
+      .countdown-item {
+        min-width: 65px;
+        padding: 0.4rem 0.6rem;
+      }
+      
+      .gallery-img {
+        width: 80px;
+        height: 80px;
+      }
     }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Aref+Ruqaa+Ink:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Aref+Ruqaa+Ink:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
 <body>
   <div class="video-intro">
-    <div class="video-container">
-      <iframe src="https://player.vimeo.com/video/1072323596?autoplay=1&muted=1&loop=0&title=0&byline=0&portrait=0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    <div class="preloader">
+      <div class="loader"></div>
+      <p>Loading our story...</p>
     </div>
+    <div class="video-container">
+      <iframe src="https://player.vimeo.com/video/1072323596?autoplay=1&muted=0&loop=0&title=0&byline=0&portrait=0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+    <div class="skip-intro">Skip Intro <i class="fas fa-arrow-right"></i></div>
   </div>
 
   <div class="container">
+    <!-- Custom SVG Ornaments -->
+    <div class="ornament ornament-1">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L14.5 9H21L15.5 13.5L18 20.5L12 16L6 20.5L8.5 13.5L3 9H9.5L12 2Z" fill="var(--gold)"/>
+      </svg>
+    </div>
+    <div class="ornament ornament-2">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L14.5 9H21L15.5 13.5L18 20.5L12 16L6 20.5L8.5 13.5L3 9H9.5L12 2Z" fill="var(--gold)"/>
+      </svg>
+    </div>
+    <div class="ornament ornament-3">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L14.5 9H21L15.5 13.5L18 20.5L12 16L6 20.5L8.5 13.5L3 9H9.5L12 2Z" fill="var(--gold)"/>
+      </svg>
+    </div>
+    <div class="ornament ornament-4">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L14.5 9H21L15.5 13.5L18 20.5L12 16L6 20.5L8.5 13.5L3 9H9.5L12 2Z" fill="var(--gold)"/>
+      </svg>
+    </div>
+    
+    <!-- Decorative Crest Updated with New Image -->
     <div class="crest">
       <img src="https://i.ibb.co/sJKgZLXJ/Animated-Wedding-Illustration-Apr-3-2025-1.png" alt="Decorative Crest">
     </div>
@@ -230,12 +528,12 @@
     <div class="monogram">Hamza & Fatima</div>
 
     <div class="headline">Nikkah Ceremony</div>
-    <div class="subtext">Together with their families, we request the honour of your presence</div>
+    <div class="subtext">Together with their families, we request the honour of your presence at our blessed union</div>
 
     <div class="event-details">
-      <strong>May 24, 2025</strong><br>
+      <strong>Saturday, May 24, 2025</strong><br>
       at 6:00 PM<br>
-      XXXX, Michigan
+      <a href="https://maps.google.com/?q=XXXX,Michigan" target="_blank" class="location-link" aria-label="View venue location on Google Maps">XXXX, Michigan</a>
     </div>
 
     <div class="ayah">
@@ -243,33 +541,45 @@
       and He placed between you affection and mercy."<br>
       <strong>— Surah Ar-Rum (30:21)</strong>
     </div>
+    
+    <!-- Additional Information Section -->
+    
+    <div class="rsvp-section">
+      <p>Please RSVP by <span class="rsvp-deadline">April 24, 2025</span></p>
+      <p>We would be honored to have you join us on our special day.</p>
+    </div>
 
     <div class="countdown">
-      <div class="countdown-item">
+      <div class="countdown-item" aria-label="Days remaining">
         <span id="days">00</span>
         Days
       </div>
-      <div class="countdown-item">
+      <div class="countdown-item" aria-label="Hours remaining">
         <span id="hours">00</span>
         Hours
       </div>
-      <div class="countdown-item">
+      <div class="countdown-item" aria-label="Minutes remaining">
         <span id="minutes">00</span>
         Minutes
       </div>
-      <div class="countdown-item">
+      <div class="countdown-item" aria-label="Seconds remaining">
         <span id="seconds">00</span>
         Seconds
       </div>
     </div>
 
-    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Nikkah+Hamza+%26+Fatima&dates=20250524T180000Z/20250524T200000Z&details=Join+us+for+the+Nikkah+ceremony+of+Hamza+and+Fatima+in+Detroit%2C+MI&location=Detroit%2C+MI" target="_blank" class="calendar-link">
-      Save to Google Calendar
-    </a>
+    <div class="buttons">
+      <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Nikkah+Hamza+%26+Fatima&dates=20250524T180000Z/20250524T200000Z&details=Join+us+for+the+Nikkah+ceremony+of+Hamza+and+Fatima+in+Detroit%2C+MI&location=Detroit%2C+MI" target="_blank" class="btn" aria-label="Add event to calendar">
+        <i class="far fa-calendar-plus"></i> Add to Calendar
+      </a>
+      <a href="mailto:hamza4fatima@gmail.com?subject=RSVP for Hamza and Fatima's Nikkah" class="btn" aria-label="Send RSVP via email">
+        <i class="far fa-envelope"></i> RSVP
+      </a>
+    </div>
 
     <div class="footer">
       We look forward to celebrating with you!<br>
-      Insha'Allah
+      <strong>Insha'Allah</strong>
     </div>
   </div>
 
@@ -284,6 +594,15 @@
       const hour = minute * 60;
       const day = hour * 24;
 
+      // Check if event date has passed
+      if (gap <= 0) {
+        document.getElementById("days").innerText = "00";
+        document.getElementById("hours").innerText = "00";
+        document.getElementById("minutes").innerText = "00";
+        document.getElementById("seconds").innerText = "00";
+        return;
+      }
+
       document.getElementById("days").innerText = String(Math.floor(gap / day)).padStart(2, '0');
       document.getElementById("hours").innerText = String(Math.floor((gap % day) / hour)).padStart(2, '0');
       document.getElementById("minutes").innerText = String(Math.floor((gap % hour) / minute)).padStart(2, '0');
@@ -295,17 +614,33 @@
     // Update every second
     setInterval(countdown, 1000);
 
-    // Video transition handling
+    // Improved video transition handling with preloader
     document.addEventListener('DOMContentLoaded', function() {
       const videoIntro = document.querySelector('.video-intro');
       const container = document.querySelector('.container');
+      const skipIntro = document.querySelector('.skip-intro');
+      const preloader = document.querySelector('.preloader');
+      const videoContainer = document.querySelector('.video-container');
       
-      // Wait for 10 seconds (video duration)
+      // Hide preloader and show video after 2 seconds
+      setTimeout(() => {
+        preloader.style.display = 'none';
+        videoContainer.classList.add('loaded');
+      }, 2000);
+      
+      // Wait for video duration then transition to main content
       setTimeout(() => {
         videoIntro.classList.add('hidden');
         container.classList.add('visible');
-      }, 10000); // 10 seconds
+      }, 12000); // 12 seconds (2s preloader + 10s video)
+      
+      // Skip button functionality
+      skipIntro.addEventListener('click', () => {
+        videoIntro.classList.add('hidden');
+        container.classList.add('visible');
+      });
     });
   </script>
 </body>
-</html> 
+</html>
+

@@ -217,7 +217,7 @@
 <body>
   <div class="video-intro">
     <div class="video-container">
-      <iframe src="https://player.vimeo.com/video/1072323596?autoplay=1&loop=0&title=0&byline=0&portrait=0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+      <iframe src="https://player.vimeo.com/video/1072323596?autoplay=1&muted=1&loop=0&title=0&byline=0&portrait=0" allow="autoplay; fullscreen" allowfullscreen></iframe>
     </div>
   </div>
 
@@ -299,11 +299,11 @@
       const videoIntro = document.querySelector('.video-intro');
       const container = document.querySelector('.container');
       
-      // Wait for the video duration (you may need to adjust this time)
+      // Wait for 10 seconds (video duration)
       setTimeout(() => {
         videoIntro.classList.add('hidden');
         container.classList.add('visible');
-      }, 8000); // Adjust this value based on your video length or desired intro time
+      }, 10000); // 10 seconds
     });
   </script>
 </body>
